@@ -226,6 +226,8 @@ parseLine:
     beq.s   .exinter
     cmp.b   #' ', d0            * Display a page (256 bytes at a time)
     beq.s   .exinterpage
+    cmp.b   #LF, d0             * Ignore LF and fetch another character
+    beq.s   .exinterend
     bra.s   .exit               * Otherwise exit
  .exinterpage:
     move.l  a3, a0
